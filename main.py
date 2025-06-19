@@ -115,8 +115,7 @@ def run():
                                 sl_price = risk_manager.validate_and_adjust_sl(sl_price, tick.ask, tick.bid,
                                                                                entry_signal)
 
-                                if (entry_signal == "BUY" and sl_price >= entry_price) or \
-                                        (entry_signal == "SELL" and sl_price <= entry_price):
+                                if (entry_signal == "BUY" and sl_price >= entry_price) or (entry_signal == "SELL" and sl_price <= entry_price):
                                     log.warning(f"Race condition detected for {symbol}. Aborting.")
                                     continue
 
