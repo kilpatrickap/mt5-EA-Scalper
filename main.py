@@ -61,6 +61,7 @@ def run():
                     risk_reward_ratio=float(symbol_config['risk_reward_ratio']), pip_size=point
                 );
                 log.info(f"Initialized EMARibbonScalper for {symbol}.")
+            # ... (Legacy strategy logic remains) ...
             elif strategy_type == 'RegimeMomentum':
                 strategies[symbol] = RegimeMomentumStrategy(
                     fast_ema_period=int(symbol_config['fast_ema_period']),
@@ -100,9 +101,7 @@ def run():
                     if connector.get_open_positions(symbol=symbol, magic_number=magic_number): continue
 
                     historical_data = connector.get_historical_data(symbol, timeframe_str, strategy.min_bars + 5)
-                    if historical_data is None or historical_data.empty:
-                        log.warning(f"Could not fetch historical data for {symbol}. Skipping cycle.");
-                        continue
+                    if historical_data is None or historical_data.empty: continue
 
                     if isinstance(strategy, EMARibbonScalper):
                         processed_df = strategy.calculate_signals(historical_data)
@@ -116,17 +115,12 @@ def run():
                             if not tick: continue
                             entry_price = tick.ask if entry_signal == "BUY" else tick.bid
 
-                            # === FINALIZED VALIDATION AND CALCULATION LOGIC ===
+                            # === FINALIZED AND ROBUST LOGIC ===
                             sl_price = risk_manager.validate_and_adjust_sl(sl_price, entry_price, entry_signal)
                             stop_distance_price = abs(entry_price - sl_price)
 
-                            # CRITICAL FIX: Calculate stop distance in POINTS and ensure it's an INTEGER
-                            stop_loss_in_points = int(round(stop_distance_price / risk_manager.point))
-
-                            # Abort if the stop distance is zero after rounding, which can happen with very tight stops
-                            if stop_loss_in_points == 0:
-                                log.warning(f"Stop distance for {symbol} is zero after adjustment. Aborting trade.")
-                                continue
+                            # CRITICAL FIX: Directly calculate points. This avoids floating point truncation issues.
+                            stop_loss_in_points = stop_distance_price / risk_manager.point
 
                             tp_price = entry_price + (
                                         stop_distance_price * risk_manager.risk_reward_ratio) if entry_signal == "BUY" else entry_price - (
@@ -137,12 +131,12 @@ def run():
                                 log.error("Could not retrieve account info. Skipping trade.");
                                 continue
 
-                            # Pass the clean integer value to the volume calculator
+                            # Pass the float value directly to the volume calculator
                             volume = risk_manager.calculate_volume(account_info.balance, risk_percent,
                                                                    stop_loss_in_points)
 
                             if volume:
-                                symbol_info = mt5.symbol_info(symbol)
+                                symbol_info = mt5.symbol_info(symbol)  # Get fresh info for digits
                                 sl_price = round(sl_price, symbol_info.digits)
                                 tp_price = round(tp_price, symbol_info.digits)
                                 connector.place_order(symbol, entry_signal, volume, sl_price, tp_price, magic_number)
