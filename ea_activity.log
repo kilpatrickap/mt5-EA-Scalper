@@ -627,3 +627,421 @@
 2025-06-19 10:55:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
 2025-06-19 10:55:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
 2025-06-19 10:55:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:56:02 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:56:02 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:56:02 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:56:02 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:56:02 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:56:02 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:56:02 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:56:13 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 10:56:13 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on USDJPY.
+2025-06-19 10:56:13 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 10:56:13 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 10:56:13 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 10:56:13 - MT5_EA - INFO - Data for USDJPY fetched successfully. Starting optimization...
+2025-06-19 10:56:32 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:56:32 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:56:32 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:56:32 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:56:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:56:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:56:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:57:02 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:57:02 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:57:02 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:57:02 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:57:02 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:57:02 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:57:02 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:57:32 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:57:32 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:57:32 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:57:32 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:57:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:57:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:57:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:58:02 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:58:02 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:58:02 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:58:02 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:58:02 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:58:02 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:58:02 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:58:32 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:58:32 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:58:32 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:58:32 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:58:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:58:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:58:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:59:02 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:59:02 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:59:02 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:59:02 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:59:02 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:59:02 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:59:02 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:59:32 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 10:59:32 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 10:59:32 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 10:59:32 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 10:59:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 10:59:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 10:59:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 10:59:33 - MT5_EA - INFO - --- Starting Backtest ---
+2025-06-19 10:59:33 - MT5_EA - INFO - Connecting to MT5 to fetch data for USDJPY on M5 from 2025-01-01 to 2025-06-18...
+2025-06-19 10:59:33 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 10:59:34 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 10:59:34 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 10:59:34 - MT5_EA - INFO - Disconnected from MT5. Proceeding with offline simulation.
+2025-06-19 10:59:34 - MT5_EA - INFO - Prepared 46251 total data points. Simulation will start at index 12085.
+2025-06-19 10:59:34 - MT5_EA - INFO - Initializing strategy and calculating all signals...
+2025-06-19 10:59:34 - MT5_EA - INFO - All signals, SL, and TP levels have been pre-calculated.
+2025-06-19 10:59:34 - MT5_EA - INFO - Starting simulation loop...
+2025-06-19 10:59:35 - MT5_EA - INFO - Simulation complete. Generating report...
+2025-06-19 10:59:35 - MT5_EA - INFO - Detailed trade log saved to 'backtest_results_USDJPY_M5_2025-01-01_to_2025-06-18.csv'
+2025-06-19 11:00:02 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:00:02 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:00:02 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:00:02 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:00:02 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:00:02 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:00:02 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:00:09 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:00:09 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on AUDCAD.
+2025-06-19 11:00:09 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:00:09 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:00:09 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:00:09 - MT5_EA - INFO - Data for AUDCAD fetched successfully. Starting optimization...
+2025-06-19 11:00:32 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:00:32 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:00:32 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:00:32 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:00:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:00:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:00:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:01:02 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:01:02 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:01:02 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:01:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:01:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:01:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:01:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:01:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:01:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:01:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:01:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:01:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:01:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:01:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:01:34 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:01:34 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on AUDCAD.
+2025-06-19 11:01:34 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:01:34 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:01:34 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:01:34 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:01:52 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:01:52 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on AUDCAD.
+2025-06-19 11:01:52 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:01:52 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:01:52 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:01:52 - MT5_EA - INFO - Data for AUDCAD fetched successfully. Starting optimization...
+2025-06-19 11:02:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:02:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:02:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:02:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:02:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:02:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:02:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:02:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:02:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:02:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:02:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:02:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:02:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:02:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:03:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:03:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:03:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:03:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:03:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:03:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:03:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:03:23 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:03:23 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on EURGBP.
+2025-06-19 11:03:23 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:03:23 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:03:23 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:03:23 - MT5_EA - INFO - Data for EURGBP fetched successfully. Starting optimization...
+2025-06-19 11:03:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:03:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:03:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:03:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:03:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:03:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:03:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:04:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:04:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:04:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:04:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:04:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:04:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:04:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:04:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:04:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:04:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:04:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:04:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:04:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:04:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:05:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:05:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:05:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:05:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:05:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:05:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:05:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:05:12 - MT5_EA - INFO - --- Starting Backtest ---
+2025-06-19 11:05:12 - MT5_EA - INFO - Connecting to MT5 to fetch data for EURGBP on M5 from 2024-10-01 to 2025-06-18...
+2025-06-19 11:05:12 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:05:12 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:05:12 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:05:12 - MT5_EA - INFO - Disconnected from MT5. Proceeding with offline simulation.
+2025-06-19 11:05:12 - MT5_EA - INFO - Prepared 65258 total data points. Simulation will start at index 12384.
+2025-06-19 11:05:12 - MT5_EA - INFO - Initializing strategy and calculating all signals...
+2025-06-19 11:05:12 - MT5_EA - INFO - All signals, SL, and TP levels have been pre-calculated.
+2025-06-19 11:05:12 - MT5_EA - INFO - Starting simulation loop...
+2025-06-19 11:05:14 - MT5_EA - INFO - Simulation complete. Generating report...
+2025-06-19 11:05:14 - MT5_EA - INFO - Detailed trade log saved to 'backtest_results_EURGBP_M5_2024-10-01_to_2025-06-18.csv'
+2025-06-19 11:05:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:05:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:05:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:05:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:05:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:05:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:05:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:05:43 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:05:43 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on NZDJPY.
+2025-06-19 11:05:43 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:05:43 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:05:43 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:05:43 - MT5_EA - INFO - Data for NZDJPY fetched successfully. Starting optimization...
+2025-06-19 11:06:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:06:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:06:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:06:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:06:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:06:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:06:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:06:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:06:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:06:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:06:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:06:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:06:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:06:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:07:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:07:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:07:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:07:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:07:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:07:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:07:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:07:03 - MT5_EA - INFO - --- Starting Backtest ---
+2025-06-19 11:07:03 - MT5_EA - INFO - Connecting to MT5 to fetch data for NZDJPY on M5 from 2024-10-01 to 2025-06-18...
+2025-06-19 11:07:03 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:07:03 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:07:03 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:07:03 - MT5_EA - INFO - Disconnected from MT5. Proceeding with offline simulation.
+2025-06-19 11:07:03 - MT5_EA - INFO - Prepared 65256 total data points. Simulation will start at index 12384.
+2025-06-19 11:07:03 - MT5_EA - INFO - Initializing strategy and calculating all signals...
+2025-06-19 11:07:04 - MT5_EA - INFO - All signals, SL, and TP levels have been pre-calculated.
+2025-06-19 11:07:04 - MT5_EA - INFO - Starting simulation loop...
+2025-06-19 11:07:05 - MT5_EA - INFO - Simulation complete. Generating report...
+2025-06-19 11:07:05 - MT5_EA - INFO - Detailed trade log saved to 'backtest_results_NZDJPY_M5_2024-10-01_to_2025-06-18.csv'
+2025-06-19 11:07:24 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:07:24 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on EURUSD.
+2025-06-19 11:07:24 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:07:24 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:07:24 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:07:24 - MT5_EA - INFO - Data for EURUSD fetched successfully. Starting optimization...
+2025-06-19 11:07:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:07:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:07:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:07:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:07:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:07:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:07:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:08:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:08:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:08:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:08:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:08:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:08:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:08:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:08:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:08:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:08:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:08:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:08:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:08:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:08:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:09:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:09:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:09:03 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:09:03 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:09:03 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:09:03 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:09:03 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:09:20 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:09:20 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on EURUSD.
+2025-06-19 11:09:20 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:09:20 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:09:20 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:09:20 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:09:33 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:09:33 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:09:33 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:09:33 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:09:33 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:09:33 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:09:33 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:09:56 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:09:56 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on EURUSD.
+2025-06-19 11:09:56 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:09:56 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:09:56 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:09:56 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:10:03 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:10:03 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:10:04 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:10:04 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:10:04 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:10:04 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:10:04 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:10:18 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:10:18 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on EURUSD.
+2025-06-19 11:10:18 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:10:18 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:10:18 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:10:18 - MT5_EA - INFO - Data for EURUSD fetched successfully. Starting optimization...
+2025-06-19 11:10:34 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:10:34 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:10:34 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:10:34 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:10:34 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:10:34 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:10:34 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:11:04 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:11:04 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:11:04 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:11:04 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:11:04 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:11:04 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:11:04 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:11:34 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:11:34 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:11:34 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:11:34 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:11:34 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:11:34 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:11:34 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:11:40 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:11:40 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on USDJPY.
+2025-06-19 11:11:40 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:11:40 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:11:40 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:11:40 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:11:52 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:11:52 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on USDJPY.
+2025-06-19 11:11:52 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:11:52 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:11:52 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:11:52 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:12:04 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:12:04 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:12:04 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:12:04 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:12:04 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:12:04 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:12:04 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:12:07 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:12:07 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on USDJPY.
+2025-06-19 11:12:07 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:12:07 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:12:07 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:12:07 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:12:30 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:12:30 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on USDJPY.
+2025-06-19 11:12:30 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:12:30 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:12:30 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:12:30 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:12:34 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:12:34 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:12:34 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:12:34 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:12:34 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:12:34 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:12:34 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:12:44 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:12:44 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on USDJPY.
+2025-06-19 11:12:44 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:12:44 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:12:44 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:12:44 - MT5_EA - ERROR - Failed to fetch historical data.
+2025-06-19 11:13:04 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:13:04 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:13:04 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:13:04 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:13:04 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:13:04 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:13:04 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:13:21 - MT5_EA - INFO - --- Starting Dynamic Backtest (Optimization) ---
+2025-06-19 11:13:21 - MT5_EA - INFO - Selected EMARibbonScalper for optimization on AUDCAD.
+2025-06-19 11:13:21 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:13:21 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:13:21 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:13:21 - MT5_EA - INFO - Data for AUDCAD fetched successfully. Starting optimization...
+2025-06-19 11:13:34 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:13:34 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:13:34 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:13:34 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:13:34 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:13:34 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:13:34 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:14:04 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:14:04 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:14:04 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:14:04 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:14:04 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:14:04 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:14:04 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:14:28 - MT5_EA - INFO - EA stopped by user.
+2025-06-19 11:14:28 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 11:14:28 - MT5_EA - INFO - Python Expert Advisor has been shut down.
+2025-06-19 11:14:39 - MT5_EA - INFO - Starting Python Multi-Symbol/Multi-Strategy Expert Advisor
+2025-06-19 11:14:39 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 11:14:39 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 11:14:39 - MT5_EA - INFO - Initializing strategies and risk managers for each symbol...
+2025-06-19 11:14:39 - MT5_EA - INFO - Initialized EMARibbonScalper for EURUSD.
+2025-06-19 11:14:39 - MT5_EA - INFO - Initialized EMARibbonScalper for USDJPY.
+2025-06-19 11:14:39 - MT5_EA - INFO - Initialized EMARibbonScalper for AUDCAD.
+2025-06-19 11:14:39 - MT5_EA - INFO - Initialized EMARibbonScalper for EURGBP.
+2025-06-19 11:14:39 - MT5_EA - INFO - Initialized EMARibbonScalper for NZDJPY.
+2025-06-19 11:14:39 - MT5_EA - INFO - EA configured to trade symbols: ['EURUSD', 'USDJPY', 'AUDCAD', 'EURGBP', 'NZDJPY']
+2025-06-19 11:14:39 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:14:39 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:14:39 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:14:39 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:14:39 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:14:39 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:14:39 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
+2025-06-19 11:15:09 - MT5_EA - INFO - -------------------- New Trading Cycle --------------------
+2025-06-19 11:15:09 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 11:15:09 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 11:15:09 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 11:15:09 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 11:15:09 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 11:15:09 - MT5_EA - INFO - Cycle complete. Sleeping for 30 seconds...
