@@ -12,13 +12,14 @@ from trading_strategy import RegimeMomentumStrategy, EMARibbonScalper
 
 def run():
     """Main execution function for the multi-strategy Expert Advisor."""
-    # --- Configuration and Initialization (No Changes Here) ---
-    config = configparser.ConfigParser();
+    # --- Configuration and Initialization (Unchanged) ---
+    config = configparser.ConfigParser()
     config.read('config.ini')
     try:
         mt5_creds, trade_params = config['mt5_credentials'], config['trading_parameters']
     except KeyError as e:
-        log.error(f"Config error: {e}. Aborting."); return
+        log.error(f"Config error: {e}. Aborting.");
+        return
     log.info("Starting Python Multi-Symbol/Multi-Strategy EA")
     connector = MT5Connector(login=int(mt5_creds['account']), password=mt5_creds['password'],
                              server=mt5_creds['server'])
@@ -27,14 +28,16 @@ def run():
         symbols_to_trade, magic_number = [s.strip() for s in trade_params['symbols'].split(',')], int(
             trade_params['magic_number'])
     except KeyError as e:
-        log.error(f"Trading param '{e}' missing. Exiting."); connector.disconnect(); return
+        log.error(f"Trading param '{e}' missing. Exiting.");
+        connector.disconnect();
+        return
     strategies, risk_managers = {}, {}
     log.info("Initializing strategies and risk managers...")
     for symbol in symbols_to_trade:
         try:
-            symbol_config = config[symbol];
+            symbol_config = config[symbol]
             strategy_type = symbol_config['strategy_type']
-            symbol_info = mt5.symbol_info(symbol);
+            symbol_info = mt5.symbol_info(symbol)
             if not symbol_info: log.error(f"Could not get info for {symbol}. Skipping."); continue
             point = symbol_info.point
             risk_managers[symbol] = RiskManager(symbol=symbol,
@@ -58,10 +61,11 @@ def run():
                                                             stoch_d_period=int(symbol_config['stoch_d_period']),
                                                             stoch_slowing=int(symbol_config['stoch_slowing']),
                                                             stoch_oversold=int(symbol_config['stoch_oversold']),
-                                                            stoch_overbought=int(symbol_config['stoch_overbought']));
+                                                            stoch_overbought=int(symbol_config['stoch_overbought']))
                 log.info(f"Initialized RegimeMomentumStrategy for {symbol}.")
         except KeyError as e:
-            log.error(f"Config error for {symbol}: {e}. Skipping."); continue
+            log.error(f"Config error for {symbol}: {e}. Skipping.");
+            continue
     log.info(f"EA configured to trade symbols: {list(strategies.keys())}")
 
     # --- Main Trading Loop ---
@@ -96,58 +100,56 @@ def run():
                     if entry_signal in ["BUY", "SELL"]:
                         if last_candle is None: continue
 
-                        sl_price = last_candle['stop_loss']
+                        # === REFACTORED TRADE EXECUTION LOGIC STARTS HERE ===
 
-                        if pd.isna(sl_price) or sl_price <= 0:
-                            log.warning(f"Strategy for {symbol} produced an invalid SL ({sl_price}). Skipping signal.")
+                        # 1. Get the suggested SL from the strategy
+                        suggested_sl_price = last_candle['stop_loss']
+                        if pd.isna(suggested_sl_price) or suggested_sl_price <= 0:
+                            log.warning(
+                                f"Strategy for {symbol} produced an invalid SL ({suggested_sl_price}). Skipping signal.")
                             continue
 
+                        # 2. Get the current market price for entry
                         tick = mt5.symbol_info_tick(symbol)
                         if not tick: continue
                         entry_price = tick.ask if entry_signal == "BUY" else tick.bid
 
-                        sl_price = risk_manager.validate_and_adjust_sl(sl_price, tick.ask, tick.bid, entry_signal)
+                        # 3. Use the RiskManager to get final, validated SL/TP prices and SL distance in pips
+                        sl_price, tp_price, stop_loss_in_pips = risk_manager.calculate_sl_tp(
+                            order_type=entry_signal,
+                            entry_price=entry_price,
+                            suggested_sl_price=suggested_sl_price
+                        )
 
-                        # --- FIX STARTS HERE ---
-                        # Add a check to ensure the returned sl_price is not None
+                        # Check if the risk manager could determine valid parameters
                         if sl_price is None:
-                            log.warning(f"Could not determine a valid SL for {symbol} after adjustments. Skipping signal.")
-                            continue
-                        # --- FIX ENDS HERE ---
-
-                        if (entry_signal == "BUY" and sl_price >= entry_price) or (
-                                entry_signal == "SELL" and sl_price <= entry_price):
-                            log.warning(
-                                f"Race condition detected for {symbol}. Entry: {entry_price}, Adj. SL: {sl_price}. Aborting.")
+                            log.warning(f"RiskManager failed to calculate valid SL/TP for {symbol}. Skipping signal.")
                             continue
 
-                        stop_distance = abs(entry_price - sl_price)
-                        tp_price = entry_price + (
-                                    stop_distance * risk_manager.risk_reward_ratio) if entry_signal == "BUY" else entry_price - (
-                                    stop_distance * risk_manager.risk_reward_ratio)
-
-                        min_stop_distance_price = risk_manager.stops_level * risk_manager.point
-                        if abs(tp_price - entry_price) < min_stop_distance_price:
-                            log.warning(f"TP for {symbol} too close after adjustments. Aborting.")
-                            continue
-
-                        stop_loss_points = stop_distance / risk_manager.point
+                        # 4. Get account info and calculate volume using the validated stop_loss_in_pips
                         account_info = mt5.account_info()
                         if not account_info:
                             log.error("Could not retrieve account info.");
                             continue
-                        volume = risk_manager.calculate_volume(account_info.balance, risk_percent, stop_loss_points)
 
+                        volume = risk_manager.calculate_volume(
+                            account_balance=account_info.balance,
+                            risk_percent=risk_percent,
+                            stop_loss_pips=stop_loss_in_pips
+                        )
+
+                        # 5. If volume is valid, place the order with the final parameters from the RiskManager
                         if volume:
                             log.info(
                                 f"Placing {entry_signal} order for {symbol} | Vol: {volume}, SL: {sl_price}, TP: {tp_price}")
-                            symbol_info = mt5.symbol_info(symbol)
-                            sl_price, tp_price = round(sl_price, symbol_info.digits), round(tp_price,
-                                                                                            symbol_info.digits)
+                            # No need to round again, RiskManager already did it.
                             connector.place_order(symbol, entry_signal, volume, sl_price, tp_price, magic_number)
 
+                        # === REFACTORED TRADE EXECUTION LOGIC ENDS HERE ===
+
                 except Exception as e:
-                    log.error(f"Error processing {symbol}: {e}", exc_info=True); continue
+                    log.error(f"Error processing {symbol}: {e}", exc_info=True);
+                    continue
 
             sleep_duration = int(trade_params.get('main_loop_sleep_seconds', 30))
             log.info(f"Cycle complete. Sleeping for {sleep_duration}s...")
@@ -155,7 +157,8 @@ def run():
     except KeyboardInterrupt:
         log.info("EA stopped by user.")
     finally:
-        connector.disconnect(); log.info("Python EA shut down.")
+        connector.disconnect();
+        log.info("Python EA shut down.")
 
 
 if __name__ == "__main__":
