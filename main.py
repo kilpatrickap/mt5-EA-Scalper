@@ -148,7 +148,7 @@ def run():
                     log.error(f"Error processing {symbol}: {e}", exc_info=True); continue
 
             sleep_duration = int(trade_params.get('main_loop_sleep_seconds', 30))
-            log.info(f"Cycle complete. Sleeping for {sleep_duration}s...")
+            log.info(f"Cycle complete. Sleeping for {sleep_duration} seconds...")
             time.sleep(sleep_duration)
     except KeyboardInterrupt:
         log.info("EA stopped by user.")
