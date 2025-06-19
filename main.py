@@ -12,8 +12,8 @@ from trading_strategy import RegimeMomentumStrategy, EMARibbonScalper
 
 def run():
     """Main execution function for the multi-strategy Expert Advisor."""
-    # --- Configuration and Initialization (No Changes Here) ---
-    config = configparser.ConfigParser()
+    # --- Initialization (No changes needed here) ---
+    config = configparser.ConfigParser();
     config.read('config.ini')
     try:
         mt5_creds, trade_params = config['mt5_credentials'], config['trading_parameters']
@@ -30,6 +30,7 @@ def run():
         log.error(f"Trading param '{e}' missing. Exiting."); connector.disconnect(); return
     strategies, risk_managers = {}, {}
     log.info("Initializing strategies and risk managers...")
+    # ... (Initialization loop remains the same) ...
     for symbol in symbols_to_trade:
         try:
             symbol_config = config[symbol];
@@ -49,18 +50,16 @@ def run():
                     consolidation_threshold_pips=float(symbol_config['consolidation_threshold_pips']),
                     risk_reward_ratio=float(symbol_config['risk_reward_ratio']), pip_size=point)
                 log.info(f"Initialized EMARibbonScalper for {symbol}.")
-            # ... (Legacy init logic remains) ...
             elif strategy_type == 'RegimeMomentum':
-                strategies[symbol] = RegimeMomentumStrategy(
-                    fast_ema_period=int(symbol_config['fast_ema_period']),
-                    slow_ema_period=int(symbol_config['slow_ema_period']),
-                    adx_period=int(symbol_config['adx_period']), adx_threshold=int(symbol_config['adx_threshold']),
-                    stoch_k_period=int(symbol_config['stoch_k_period']),
-                    stoch_d_period=int(symbol_config['stoch_d_period']),
-                    stoch_slowing=int(symbol_config['stoch_slowing']),
-                    stoch_oversold=int(symbol_config['stoch_oversold']),
-                    stoch_overbought=int(symbol_config['stoch_overbought'])
-                );
+                strategies[symbol] = RegimeMomentumStrategy(fast_ema_period=int(symbol_config['fast_ema_period']),
+                                                            slow_ema_period=int(symbol_config['slow_ema_period']),
+                                                            adx_period=int(symbol_config['adx_period']),
+                                                            adx_threshold=int(symbol_config['adx_threshold']),
+                                                            stoch_k_period=int(symbol_config['stoch_k_period']),
+                                                            stoch_d_period=int(symbol_config['stoch_d_period']),
+                                                            stoch_slowing=int(symbol_config['stoch_slowing']),
+                                                            stoch_oversold=int(symbol_config['stoch_oversold']),
+                                                            stoch_overbought=int(symbol_config['stoch_overbought']));
                 log.info(f"Initialized RegimeMomentumStrategy for {symbol}.")
         except KeyError as e:
             log.error(f"Config error for {symbol}: {e}. Skipping."); continue
@@ -69,67 +68,89 @@ def run():
     # --- Main Trading Loop ---
     try:
         while True:
-            log.info("--- New Trading Cycle ---")
+            log.info("-------------------- New Trading Cycle --------------------")
             for symbol in strategies.keys():
                 log.info(f"--- Processing symbol: {symbol} ---")
                 try:
                     strategy, risk_manager = strategies[symbol], risk_managers[symbol]
-                    # === THIS IS THE CORRECTED LOGIC ===
-                    # Get the config for the current symbol in the loop
                     symbol_config = config[symbol]
-                    # Use the correct 'symbol_config' object to get parameters
                     timeframe_str = symbol_config['timeframe']
                     risk_percent = float(symbol_config.get('risk_per_trade_percent', 1.0))
-                    # ==================================
 
-                    if connector.get_open_positions(symbol=symbol, magic_number=magic_number): continue
+                    open_positions = connector.get_open_positions(symbol=symbol, magic_number=magic_number)
 
-                    historical_data = connector.get_historical_data(symbol, timeframe_str, strategy.min_bars + 5)
-                    if historical_data is None or historical_data.empty: continue
+                    # === UPDATED LOGIC FOR HANDLING POSITIONS AND SIGNALS ===
+                    if open_positions:
+                        pos_type = "BUY" if open_positions[0].type == mt5.ORDER_TYPE_BUY else "SELL"
+                        log.info(f"Holding current {pos_type} position for {symbol}.")
+                        continue
+                    else:
+                        historical_data = connector.get_historical_data(symbol, timeframe_str, strategy.min_bars + 5)
+                        if historical_data is None or historical_data.empty: continue
 
-                    if isinstance(strategy, EMARibbonScalper):
-                        processed_df = strategy.calculate_signals(historical_data)
-                        last_candle = processed_df.iloc[-2]
-                        if last_candle['signal'] in [1, -1]:
-                            entry_signal = "BUY" if last_candle['signal'] == 1 else "SELL"
-                            log.info(f"EMARibbonScalper signal found for {symbol}: {entry_signal}")
+                        # --- Logic to get a signal string (BUY, SELL, or HOLD) ---
+                        entry_signal = "HOLD"
+                        if isinstance(strategy, EMARibbonScalper):
+                            processed_df = strategy.calculate_signals(historical_data)
+                            last_candle = processed_df.iloc[-2]
+                            if last_candle['signal'] == 1:
+                                entry_signal = "BUY"
+                            elif last_candle['signal'] == -1:
+                                entry_signal = "SELL"
+                        elif isinstance(strategy, RegimeMomentumStrategy):
+                            entry_signal = strategy.get_entry_signal(historical_data)
 
-                            sl_price_initial = last_candle['stop_loss']
-                            tick = mt5.symbol_info_tick(symbol)
-                            if not tick: continue
-                            entry_price = tick.ask if entry_signal == "BUY" else tick.bid
+                        # Log the signal status for every symbol, every cycle
+                        log.info(f"Strategy Entry Signal for {symbol} on {timeframe_str}: {entry_signal}")
 
-                            sl_price = risk_manager.validate_and_adjust_sl(sl_price_initial, tick.ask, tick.bid,
-                                                                           entry_signal)
+                        # --- If we have a tradeable signal, proceed ---
+                        if entry_signal in ["BUY", "SELL"]:
+                            # The logic from here is specific to EMARibbonScalper as RegimeMomentum is legacy
+                            if isinstance(strategy, EMARibbonScalper):
+                                sl_price = last_candle['stop_loss']
+                                tick = mt5.symbol_info_tick(symbol)
+                                if not tick: continue
+                                entry_price = tick.ask if entry_signal == "BUY" else tick.bid
 
-                            if (entry_signal == "BUY" and sl_price >= entry_price) or \
-                                    (entry_signal == "SELL" and sl_price <= entry_price):
-                                log.warning(
-                                    f"Race condition detected for {symbol}. Entry: {entry_price}, Adj. SL: {sl_price}. Aborting.")
-                                continue
+                                sl_price = risk_manager.validate_and_adjust_sl(sl_price, tick.ask, tick.bid,
+                                                                               entry_signal)
 
-                            stop_distance = abs(entry_price - sl_price)
-                            tp_price = entry_price + (
-                                        stop_distance * risk_manager.risk_reward_ratio) if entry_signal == "BUY" else entry_price - (
-                                        stop_distance * risk_manager.risk_reward_ratio)
+                                if (entry_signal == "BUY" and sl_price >= entry_price) or \
+                                        (entry_signal == "SELL" and sl_price <= entry_price):
+                                    log.warning(f"Race condition detected for {symbol}. Aborting.")
+                                    continue
 
-                            min_stop_distance_price = risk_manager.stops_level * risk_manager.point
-                            if abs(tp_price - entry_price) < min_stop_distance_price:
-                                log.warning(f"TP for {symbol} too close after adjustments. Aborting to maintain R:R.")
-                                continue
+                                stop_distance = abs(entry_price - sl_price)
+                                tp_price = entry_price + (
+                                            stop_distance * risk_manager.risk_reward_ratio) if entry_signal == "BUY" else entry_price - (
+                                            stop_distance * risk_manager.risk_reward_ratio)
 
-                            stop_loss_points = stop_distance / risk_manager.point
-                            account_info = mt5.account_info()
-                            if not account_info:
-                                log.error("Could not get account info. Skipping trade.");
-                                continue
-                            volume = risk_manager.calculate_volume(account_info.balance, risk_percent, stop_loss_points)
+                                min_stop_distance_price = risk_manager.stops_level * risk_manager.point
+                                if abs(tp_price - entry_price) < min_stop_distance_price:
+                                    log.warning(f"TP for {symbol} too close. Aborting.")
+                                    continue
 
-                            if volume:
-                                symbol_info = mt5.symbol_info(symbol)  # Get fresh info for digits
-                                sl_price, tp_price = round(sl_price, symbol_info.digits), round(tp_price,
-                                                                                                symbol_info.digits)
-                                connector.place_order(symbol, entry_signal, volume, sl_price, tp_price, magic_number)
+                                stop_loss_points = stop_distance / risk_manager.point
+                                account_info = mt5.account_info()
+                                if not account_info:
+                                    log.error("Could not retrieve account info.");
+                                    continue
+
+                                volume = risk_manager.calculate_volume(account_info.balance, risk_percent,
+                                                                       stop_loss_points)
+
+                                if volume:
+                                    symbol_info = mt5.symbol_info(symbol)
+                                    sl_price, tp_price = round(sl_price, symbol_info.digits), round(tp_price,
+                                                                                                    symbol_info.digits)
+
+                                    # New pre-flight summary log
+                                    log.info(
+                                        f"Placing {entry_signal} order for {symbol} | Vol: {volume}, SL: {sl_price}, TP: {tp_price}")
+
+                                    connector.place_order(symbol, entry_signal, volume, sl_price, tp_price,
+                                                          magic_number)
+
                 except Exception as e:
                     log.error(f"Error processing {symbol}: {e}", exc_info=True); continue
 
@@ -142,4 +163,5 @@ def run():
         connector.disconnect(); log.info("Python EA shut down.")
 
 
-if __name__ == "__main__": run()
+if __name__ == "__main__":
+    run()
