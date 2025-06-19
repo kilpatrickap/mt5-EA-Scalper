@@ -12,7 +12,7 @@ from trading_strategy import RegimeMomentumStrategy, EMARibbonScalper
 
 def run():
     """Main execution function for the multi-strategy Expert Advisor."""
-    # --- Configuration and Initialization ---
+    # --- Configuration and Initialization (No Changes Here) ---
     config = configparser.ConfigParser();
     config.read('config.ini')
     try:
@@ -81,7 +81,6 @@ def run():
                     historical_data = connector.get_historical_data(symbol, timeframe_str, strategy.min_bars + 5)
                     if historical_data is None or historical_data.empty: continue
 
-                    # Universal signal generation
                     entry_signal = "HOLD"
                     last_candle = None
                     if isinstance(strategy, EMARibbonScalper):
@@ -99,8 +98,6 @@ def run():
 
                         sl_price = last_candle['stop_loss']
 
-                        # === CORRECTED ORDER OF OPERATIONS ===
-                        # 1. DATA INTEGRITY CHECK (MUST BE FIRST)
                         if pd.isna(sl_price) or sl_price <= 0:
                             log.warning(f"Strategy for {symbol} produced an invalid SL ({sl_price}). Skipping signal.")
                             continue
@@ -109,15 +106,15 @@ def run():
                         if not tick: continue
                         entry_price = tick.ask if entry_signal == "BUY" else tick.bid
 
-                        # 2. BROKER COMPLIANCE CHECK
                         sl_price = risk_manager.validate_and_adjust_sl(sl_price, tick.ask, tick.bid, entry_signal)
 
-                        # 3. RACE CONDITION CHECK
-                        if (entry_signal == "BUY" and sl_price >= entry_price) or (entry_signal == "SELL" and sl_price <= entry_price):
+                        # === THIS IS THE CORRECTED LINE ===
+                        if (entry_signal == "BUY" and sl_price >= entry_price) or (
+                                entry_signal == "SELL" and sl_price <= entry_price):
                             log.warning(
                                 f"Race condition detected for {symbol}. Entry: {entry_price}, Adj. SL: {sl_price}. Aborting.")
                             continue
-                        # ====================================
+                        # ==================================
 
                         stop_distance = abs(entry_price - sl_price)
                         tp_price = entry_price + (
@@ -148,7 +145,7 @@ def run():
                     log.error(f"Error processing {symbol}: {e}", exc_info=True); continue
 
             sleep_duration = int(trade_params.get('main_loop_sleep_seconds', 30))
-            log.info(f"Cycle complete. Sleeping for {sleep_duration} seconds...")
+            log.info(f"Cycle complete. Sleeping for {sleep_duration}s...")
             time.sleep(sleep_duration)
     except KeyboardInterrupt:
         log.info("EA stopped by user.")
