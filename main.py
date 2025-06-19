@@ -67,7 +67,7 @@ def run():
     # --- Main Trading Loop ---
     try:
         while True:
-            log.info("--- New Trading Cycle ---")
+            log.info("---------------- New Trading Cycle ---------------")
             for symbol in strategies.keys():
                 log.info(f"--- Processing symbol: {symbol} ---")
                 try:
