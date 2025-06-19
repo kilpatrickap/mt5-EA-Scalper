@@ -1,0 +1,17 @@
+# requirements.txt
+
+# A core packaging utility required by other libraries
+setuptools
+
+# Core data handling and TA library
+pandas
+pandas-ta
+
+# MT5 integration
+metatrader5
+
+# Progress bar for backtesting
+tqdm
+
+# Date utility for backtesting
+python-dateutil
