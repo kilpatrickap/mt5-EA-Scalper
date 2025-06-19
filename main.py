@@ -114,33 +114,27 @@ def run():
                             if not tick: continue
                             entry_price = tick.ask if entry_signal == "BUY" else tick.bid
 
-                            # === FINALIZED AND FULLY VALIDATED LOGIC ===
-                            # 1. Validate the SL and get the adjusted price
+                            # === FINAL, PRODUCTION-HARDENED LOGIC ===
                             sl_price = risk_manager.validate_and_adjust_sl(sl_price, entry_price, entry_signal)
 
-                            # 2. Calculate the required minimum distance in price terms for validation
-                            min_stop_distance_price = risk_manager.stops_level * risk_manager.point
+                            # NEW AND FINAL GATEKEEPER: Ensure the SL is on the correct side of the entry price
+                            # This catches race conditions where the market moves past the adjusted SL.
+                            if entry_signal == "BUY" and sl_price >= entry_price:
+                                log.warning(
+                                    f"Race condition detected for {symbol} BUY. Entry price ({entry_price}) is below adjusted SL ({sl_price}). Aborting.")
+                                continue
+                            elif entry_signal == "SELL" and sl_price <= entry_price:
+                                log.warning(
+                                    f"Race condition detected for {symbol} SELL. Entry price ({entry_price}) is above adjusted SL ({sl_price}). Aborting.")
+                                continue
 
-                            # 3. Recalculate TP based on the adjusted SL
+                            # If we pass the gatekeeper, we can proceed with calculations.
                             stop_distance_price = abs(entry_price - sl_price)
+                            stop_loss_in_points = stop_distance_price / risk_manager.point
+
                             tp_price = entry_price + (
                                         stop_distance_price * risk_manager.risk_reward_ratio) if entry_signal == "BUY" else entry_price - (
                                         stop_distance_price * risk_manager.risk_reward_ratio)
-
-                            # 4. NEW: Validate the TP to ensure it's also far enough away
-                            if abs(tp_price - entry_price) < min_stop_distance_price:
-                                log.warning(
-                                    f"Take Profit for {symbol} is too close to entry ({tp_price}) after R:R calculation. Aborting trade to maintain valid R:R.")
-                                continue  # Skip trade
-
-                            # 5. Calculate the final stop distance in points for the volume calculator
-                            stop_loss_in_points = stop_distance_price / risk_manager.point
-
-                            # 6. Final sanity check
-                            if stop_loss_in_points <= 0:
-                                log.warning(f"Final stop distance for {symbol} is zero or negative. Aborting trade.")
-                                continue
-                            # ========================================================
 
                             account_info = mt5.account_info()
                             if not account_info:
@@ -149,6 +143,7 @@ def run():
 
                             volume = risk_manager.calculate_volume(account_info.balance, risk_percent,
                                                                    stop_loss_in_points)
+
                             if volume:
                                 symbol_info = mt5.symbol_info(symbol)
                                 sl_price = round(sl_price, symbol_info.digits)
