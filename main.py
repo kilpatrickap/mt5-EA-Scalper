@@ -108,13 +108,18 @@ def run():
 
                         sl_price = risk_manager.validate_and_adjust_sl(sl_price, tick.ask, tick.bid, entry_signal)
 
-                        # === THIS IS THE CORRECTED LINE ===
+                        # --- FIX STARTS HERE ---
+                        # Add a check to ensure the returned sl_price is not None
+                        if sl_price is None:
+                            log.warning(f"Could not determine a valid SL for {symbol} after adjustments. Skipping signal.")
+                            continue
+                        # --- FIX ENDS HERE ---
+
                         if (entry_signal == "BUY" and sl_price >= entry_price) or (
                                 entry_signal == "SELL" and sl_price <= entry_price):
                             log.warning(
                                 f"Race condition detected for {symbol}. Entry: {entry_price}, Adj. SL: {sl_price}. Aborting.")
                             continue
-                        # ==================================
 
                         stop_distance = abs(entry_price - sl_price)
                         tp_price = entry_price + (
