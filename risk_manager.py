@@ -1,6 +1,7 @@
 # risk_manager.py
 import math
 import MetaTrader5 as mt5
+# Use the original logger name as requested
 from logger_setup import log
 
 
@@ -46,7 +47,7 @@ class RiskManager:
 
         if sl_in_pips < required_sl_distance_in_points:
             original_sl_pips = self.stop_loss_pips
-            sl_in_pips = math.ceil(required_sl_distance_in_points) # Round up to nearest whole pip
+            sl_in_pips = math.ceil(required_sl_distance_in_points)  # Round up to nearest whole pip
             log.warning(
                 f"Configured SL for {self.symbol} is too tight. "
                 f"Original: {original_sl_pips} pips, Required & Adjusted to: {sl_in_pips} pips."
@@ -72,6 +73,7 @@ class RiskManager:
     def calculate_volume(self, account_balance: float, risk_percent: float, stop_loss_pips: int) -> float | None:
         """
         Calculates the trade volume based on a fixed percentage of account equity.
+        If calculated volume is below broker minimum, it rounds UP to the minimum volume.
         """
         if not all([account_balance, risk_percent, stop_loss_pips]):
             log.error("Invalid inputs for volume calculation.")
@@ -88,41 +90,38 @@ class RiskManager:
         risk_amount = account_balance * (risk_percent / 100.0)
 
         # 3. Calculate value of 1 pip for 1 lot
-        # (tick_value * pip_size_in_points) / tick_size
         pip_value_per_lot = (symbol_info.trade_tick_value * (self.point * 10)) / symbol_info.trade_tick_size
-
         if pip_value_per_lot == 0:
             log.error(f"Pip value for {self.symbol} is zero. Cannot calculate volume.")
             return None
 
         # 4. Calculate loss per lot for the given stop loss
         loss_per_lot = stop_loss_pips * pip_value_per_lot
+        if loss_per_lot == 0:
+            log.error("Cannot calculate volume due to zero loss_per_lot (SL is likely too small).")
+            return None
 
         # 5. Calculate ideal volume
-        try:
-            volume = risk_amount / loss_per_lot
-        except ZeroDivisionError:
-            log.error("Cannot calculate volume due to ZeroDivisionError (loss_per_lot is zero).")
-            return None
+        volume = risk_amount / loss_per_lot
 
         # 6. Normalize volume according to broker limits
         volume_step = symbol_info.volume_step
         min_volume = symbol_info.volume_min
         max_volume = symbol_info.volume_max
 
-        # Adjust to the nearest valid volume step
         volume = math.floor(volume / volume_step) * volume_step
-        volume = round(volume, 2) # Round to handle potential float inaccuracies
+        volume = round(volume, 2)
 
-        # 7. Check against min/max volume limits
+        # 7. Check against min/max volume limits with NEW "Round-Up" LOGIC
         if volume < min_volume:
-            log.warning(f"Calculated volume {volume} is less than min volume {min_volume}. "
-                        f"Risk is too small for this trade. No trade will be placed.")
-            return None # or return min_volume if you prefer to trade anyway with higher risk
+            log.warning(f"Calculated volume {volume:.2f} is less than min volume {min_volume}. "
+                        f"Rounding up to minimum to execute trade. Risk will be higher than target.")
+            volume = min_volume
+
         if volume > max_volume:
-            log.warning(f"Calculated volume {volume} exceeds max volume {max_volume}. Capping at max volume.")
+            log.warning(f"Calculated volume {volume:.2f} exceeds max volume {max_volume}. Capping at max volume.")
             volume = max_volume
 
         log.info(f"Dynamic Volume Calculated: {volume:.2f} lots for {self.symbol} "
-                 f"(Risk: {risk_percent}%, SL: {stop_loss_pips} pips, Account: {account_balance:.2f})")
+                 f"(Risk Target: {risk_percent}%, SL: {stop_loss_pips} pips, Account: {account_balance:.2f})")
         return volume
