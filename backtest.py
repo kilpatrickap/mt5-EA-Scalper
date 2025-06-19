@@ -6,9 +6,9 @@ from datetime import datetime
 from tqdm import tqdm
 import MetaTrader5 as mt5
 
+# Using the original logger name as requested
 from logger_setup import log
 from mt5_connector import MT5Connector
-# <-- IMPORT THE NEW STRATEGY
 from trading_strategy import EMARibbonScalper
 
 
@@ -23,12 +23,10 @@ def run_backtest():
     config.read('config.ini')
 
     try:
-        # Using a new dedicated section for the scalper strategy
-        strategy_config = config['EMARibbonScalper_EURUSD']
         backtest_params = config['backtest_parameters']
         mt5_creds = config['mt5_credentials']
-
-        symbol = strategy_config['symbol']
+        symbol = backtest_params['backtest_symbol']
+        strategy_config = config[symbol]
         start_date = datetime.strptime(backtest_params['start_date'], '%Y-%m-%d')
         end_date = datetime.strptime(backtest_params['end_date'], '%Y-%m-%d')
         timeframe_str = strategy_config['timeframe']
@@ -49,13 +47,16 @@ def run_backtest():
         return
     point = symbol_info.point
 
-    mt5_timeframe = connector.get_historical_data("EURUSD", timeframe_str, 1)  # Just to get the constant from the map
-    if not mt5_timeframe: connector.disconnect(); return
+    timeframe_map = {'M1': mt5.TIMEFRAME_M1, 'M5': mt5.TIMEFRAME_M5, 'M15': mt5.TIMEFRAME_M15, 'H1': mt5.TIMEFRAME_H1}
+    mt5_timeframe = timeframe_map.get(timeframe_str.upper())
+    if not mt5_timeframe:
+        log.error(f"Invalid timeframe '{timeframe_str}' in config for {symbol}.")
+        connector.disconnect()
+        return
 
-    # Fetch historical data with a larger buffer
     from dateutil.relativedelta import relativedelta
-    buffer_start_date = start_date - relativedelta(months=2)  # Scalping needs less buffer
-    rates = mt5.copy_rates_range(symbol, mt5.TIMEFRAME_M5, buffer_start_date, end_date)  # Assuming M5 for example
+    buffer_start_date = start_date - relativedelta(months=2)
+    rates = mt5.copy_rates_range(symbol, mt5_timeframe, buffer_start_date, end_date)
     connector.disconnect()
     log.info("Disconnected from MT5. Proceeding with offline simulation.")
 
@@ -74,14 +75,16 @@ def run_backtest():
     log.info("Initializing strategy and calculating all signals...")
     strategy = EMARibbonScalper(
         ema_fast_periods=[int(p) for p in strategy_config['ema_fast_periods'].split(',')],
+        # === THIS IS THE CORRECTED LINE ===
+        # The script now looks for 'ema_slow_period' to match the config file standard.
         ema_slow_period=int(strategy_config['ema_slow_period']),
+        # ==================================
         rsi_period=int(strategy_config['rsi_period']),
         rsi_level=int(strategy_config['rsi_level']),
         consolidation_threshold_pips=float(strategy_config['consolidation_threshold_pips']),
         risk_reward_ratio=float(strategy_config['risk_reward_ratio']),
         pip_size=point
     )
-    # The new, efficient way: calculate signals once
     df = strategy.calculate_signals(df)
     log.info("All signals, SL, and TP levels have been pre-calculated.")
 
@@ -89,16 +92,14 @@ def run_backtest():
     log.info("Starting simulation loop...")
     current_trade = None
     completed_trades = []
-    max_trade_duration = int(strategy_config.get('max_trade_duration_candles', 10))  # Time-based stop
+    max_trade_duration = int(strategy_config.get('max_trade_duration_candles', 10))
 
     for i in tqdm(range(sim_start_index, len(df)), desc=f"Backtesting {symbol}"):
         current_candle = df.iloc[i]
 
-        # --- Check for exits on an open trade ---
         if current_trade:
             exit_price, pnl, comment = None, 0, ''
 
-            # 4a. Check for SL/TP Hit
             if current_trade['type'] == 'BUY':
                 if current_candle['low'] <= current_trade['sl']:
                     exit_price, comment = current_trade['sl'], 'SL Hit'
@@ -110,11 +111,9 @@ def run_backtest():
                 elif current_candle['low'] <= current_trade['tp']:
                     exit_price, comment = current_trade['tp'], 'TP Hit'
 
-            # 4b. NEW: Check for Time-Based Exit
             if not exit_price and (i - current_trade['entry_index']) >= max_trade_duration:
                 exit_price, comment = current_candle['close'], 'Time Stop'
 
-            # 4c. Process the exit if one was triggered
             if exit_price:
                 pnl = (exit_price - current_trade['entry_price']) / point if current_trade['type'] == 'BUY' else \
                     (current_trade['entry_price'] - exit_price) / point
@@ -123,16 +122,13 @@ def run_backtest():
                 completed_trades.append(current_trade)
                 current_trade = None
 
-        # --- Check for a new entry signal if no trade is open ---
         if not current_trade:
-            # Check the pre-calculated signal for the CURRENT candle
             if current_candle['signal'] != 0:
                 signal_type = "BUY" if current_candle['signal'] == 1 else "SELL"
                 entry_price = current_candle['close']
                 sl_price = current_candle['stop_loss']
                 tp_price = current_candle['take_profit']
 
-                # Ensure SL/TP were calculated correctly (not zero)
                 if sl_price > 0 and tp_price > 0:
                     current_trade = {
                         'id': len(completed_trades) + 1,
@@ -142,7 +138,7 @@ def run_backtest():
                         'entry_price': entry_price,
                         'sl': sl_price,
                         'tp': tp_price,
-                        'entry_index': i  # For time-based stop
+                        'entry_index': i
                     }
 
     # --- 5. Reporting ---
@@ -152,11 +148,6 @@ def run_backtest():
         return
 
     results_df = pd.DataFrame(completed_trades)
-    # ... (rest of the reporting is the same, just update the strategy name)
-    # ...
-    print(f" Strategy          : EMA Ribbon Breakout Scalper")
-    # ...
-    # (The rest of the reporting code remains identical)
     total_trades = len(results_df)
     winning_trades = results_df[results_df['pnl_pips'] > 0]
     losing_trades = results_df[results_df['pnl_pips'] <= 0]
