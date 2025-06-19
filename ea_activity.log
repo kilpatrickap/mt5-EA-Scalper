@@ -5525,3 +5525,91 @@ TypeError: '<=' not supported between instances of 'NoneType' and 'float'
 2025-06-19 15:32:22 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
 2025-06-19 15:32:22 - MT5_EA - INFO - Strategy Entry Signal for NZDJPY on M1: HOLD
 2025-06-19 15:32:22 - MT5_EA - INFO - Cycle complete. Sleeping for 30s...
+2025-06-19 15:32:52 - MT5_EA - INFO - ------------------ New Trading Cycle ---------------------
+2025-06-19 15:32:52 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 15:32:52 - MT5_EA - INFO - Strategy Entry Signal for EURUSD on M1: HOLD
+2025-06-19 15:32:52 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 15:32:52 - MT5_EA - INFO - Strategy Entry Signal for USDJPY on M1: HOLD
+2025-06-19 15:32:52 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 15:32:53 - MT5_EA - INFO - Strategy Entry Signal for AUDCAD on M1: HOLD
+2025-06-19 15:32:53 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 15:32:53 - MT5_EA - INFO - Strategy Entry Signal for EURGBP on M1: HOLD
+2025-06-19 15:32:53 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 15:32:53 - MT5_EA - INFO - Strategy Entry Signal for NZDJPY on M1: HOLD
+2025-06-19 15:32:53 - MT5_EA - INFO - Cycle complete. Sleeping for 30s...
+2025-06-19 15:33:23 - MT5_EA - INFO - ------------------ New Trading Cycle ---------------------
+2025-06-19 15:33:23 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 15:33:23 - MT5_EA - INFO - Strategy Entry Signal for EURUSD on M1: HOLD
+2025-06-19 15:33:23 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 15:33:23 - MT5_EA - INFO - Strategy Entry Signal for USDJPY on M1: HOLD
+2025-06-19 15:33:23 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 15:33:23 - MT5_EA - INFO - Strategy Entry Signal for AUDCAD on M1: HOLD
+2025-06-19 15:33:23 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 15:33:23 - MT5_EA - INFO - Strategy Entry Signal for EURGBP on M1: HOLD
+2025-06-19 15:33:23 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 15:33:23 - MT5_EA - INFO - Strategy Entry Signal for NZDJPY on M1: HOLD
+2025-06-19 15:33:23 - MT5_EA - INFO - Cycle complete. Sleeping for 30s...
+2025-06-19 15:33:26 - MT5_EA - INFO - EA stopped by user.
+2025-06-19 15:33:26 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 15:33:26 - MT5_EA - INFO - Python EA shut down.
+2025-06-19 15:33:32 - MT5_EA - INFO - Starting Python Multi-Symbol/Multi-Strategy EA
+2025-06-19 15:33:32 - MT5_EA - INFO - Initializing MT5 connection...
+2025-06-19 15:33:32 - MT5_EA - INFO - MT5 connection successful to account 93083332.
+2025-06-19 15:33:32 - MT5_EA - INFO - Initializing strategies and risk managers...
+2025-06-19 15:33:32 - MT5_EA - INFO - Initialized EMARibbonScalper for EURUSD.
+2025-06-19 15:33:32 - MT5_EA - INFO - Initialized EMARibbonScalper for USDJPY.
+2025-06-19 15:33:32 - MT5_EA - INFO - Initialized EMARibbonScalper for AUDCAD.
+2025-06-19 15:33:32 - MT5_EA - INFO - Initialized EMARibbonScalper for EURGBP.
+2025-06-19 15:33:32 - MT5_EA - INFO - Initialized EMARibbonScalper for NZDJPY.
+2025-06-19 15:33:32 - MT5_EA - INFO - EA configured to trade symbols: ['EURUSD', 'USDJPY', 'AUDCAD', 'EURGBP', 'NZDJPY']
+2025-06-19 15:33:32 - MT5_EA - INFO - --- New Trading Cycle ---
+2025-06-19 15:33:32 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 15:33:32 - MT5_EA - INFO - Strategy Entry Signal for EURUSD on M1: HOLD
+2025-06-19 15:33:32 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 15:33:32 - MT5_EA - INFO - Strategy Entry Signal for USDJPY on M1: HOLD
+2025-06-19 15:33:32 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 15:33:32 - MT5_EA - INFO - Strategy Entry Signal for AUDCAD on M1: HOLD
+2025-06-19 15:33:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 15:33:32 - MT5_EA - INFO - Strategy Entry Signal for EURGBP on M1: HOLD
+2025-06-19 15:33:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 15:33:32 - MT5_EA - INFO - Strategy Entry Signal for NZDJPY on M1: HOLD
+2025-06-19 15:33:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30s...
+2025-06-19 15:34:02 - MT5_EA - INFO - --- New Trading Cycle ---
+2025-06-19 15:34:02 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 15:34:02 - MT5_EA - INFO - Strategy Entry Signal for EURUSD on M1: HOLD
+2025-06-19 15:34:02 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 15:34:02 - MT5_EA - INFO - Strategy Entry Signal for USDJPY on M1: HOLD
+2025-06-19 15:34:02 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 15:34:02 - MT5_EA - INFO - Strategy Entry Signal for AUDCAD on M1: SELL
+2025-06-19 15:34:02 - MT5_EA - ERROR - Error processing AUDCAD: '<=' not supported between instances of 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "C:\Users\Consar-Kilpatrick\PycharmProjects\mt5-EA-Scalper\main.py", line 117, in run
+    (entry_signal == "SELL" and sl_price <= entry_price):
+                                ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<=' not supported between instances of 'NoneType' and 'float'
+2025-06-19 15:34:02 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 15:34:02 - MT5_EA - INFO - Strategy Entry Signal for EURGBP on M1: HOLD
+2025-06-19 15:34:02 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 15:34:02 - MT5_EA - INFO - Strategy Entry Signal for NZDJPY on M1: HOLD
+2025-06-19 15:34:02 - MT5_EA - INFO - Cycle complete. Sleeping for 30s...
+2025-06-19 15:34:32 - MT5_EA - INFO - --- New Trading Cycle ---
+2025-06-19 15:34:32 - MT5_EA - INFO - --- Processing symbol: EURUSD ---
+2025-06-19 15:34:32 - MT5_EA - INFO - Strategy Entry Signal for EURUSD on M1: HOLD
+2025-06-19 15:34:32 - MT5_EA - INFO - --- Processing symbol: USDJPY ---
+2025-06-19 15:34:32 - MT5_EA - INFO - Strategy Entry Signal for USDJPY on M1: HOLD
+2025-06-19 15:34:32 - MT5_EA - INFO - --- Processing symbol: AUDCAD ---
+2025-06-19 15:34:32 - MT5_EA - INFO - Strategy Entry Signal for AUDCAD on M1: SELL
+2025-06-19 15:34:32 - MT5_EA - ERROR - Error processing AUDCAD: '<=' not supported between instances of 'NoneType' and 'float'
+Traceback (most recent call last):
+  File "C:\Users\Consar-Kilpatrick\PycharmProjects\mt5-EA-Scalper\main.py", line 117, in run
+    (entry_signal == "SELL" and sl_price <= entry_price):
+                                ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<=' not supported between instances of 'NoneType' and 'float'
+2025-06-19 15:34:32 - MT5_EA - INFO - --- Processing symbol: EURGBP ---
+2025-06-19 15:34:32 - MT5_EA - INFO - Strategy Entry Signal for EURGBP on M1: HOLD
+2025-06-19 15:34:32 - MT5_EA - INFO - --- Processing symbol: NZDJPY ---
+2025-06-19 15:34:32 - MT5_EA - INFO - Strategy Entry Signal for NZDJPY on M1: HOLD
+2025-06-19 15:34:32 - MT5_EA - INFO - Cycle complete. Sleeping for 30s...
+2025-06-19 15:34:54 - MT5_EA - INFO - EA stopped by user.
+2025-06-19 15:34:54 - MT5_EA - INFO - Shutting down MT5 connection.
+2025-06-19 15:34:54 - MT5_EA - INFO - Python EA shut down.
