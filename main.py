@@ -12,7 +12,7 @@ from trading_strategy import RegimeMomentumStrategy, EMARibbonScalper
 
 def run():
     """Main execution function for the multi-strategy Expert Advisor."""
-    # --- Configuration and Initialization (No Changes Here) ---
+    # --- Configuration and Initialization ---
     config = configparser.ConfigParser();
     config.read('config.ini')
     try:
@@ -49,7 +49,6 @@ def run():
                     consolidation_threshold_pips=float(symbol_config['consolidation_threshold_pips']),
                     risk_reward_ratio=float(symbol_config['risk_reward_ratio']), pip_size=point)
                 log.info(f"Initialized EMARibbonScalper for {symbol}.")
-            # ... (Legacy init logic remains) ...
             elif strategy_type == 'RegimeMomentum':
                 strategies[symbol] = RegimeMomentumStrategy(fast_ema_period=int(symbol_config['fast_ema_period']),
                                                             slow_ema_period=int(symbol_config['slow_ema_period']),
@@ -68,7 +67,7 @@ def run():
     # --- Main Trading Loop ---
     try:
         while True:
-            log.info("------------------ New Trading Cycle ---------------------")
+            log.info("--- New Trading Cycle ---")
             for symbol in strategies.keys():
                 log.info(f"--- Processing symbol: {symbol} ---")
                 try:
@@ -82,7 +81,9 @@ def run():
                     historical_data = connector.get_historical_data(symbol, timeframe_str, strategy.min_bars + 5)
                     if historical_data is None or historical_data.empty: continue
 
+                    # Universal signal generation
                     entry_signal = "HOLD"
+                    last_candle = None
                     if isinstance(strategy, EMARibbonScalper):
                         processed_df = strategy.calculate_signals(historical_data)
                         last_candle = processed_df.iloc[-2]
@@ -90,16 +91,16 @@ def run():
                             entry_signal = "BUY"
                         elif last_candle['signal'] == -1:
                             entry_signal = "SELL"
-                    # ... elif for other strategies would go here ...
 
                     log.info(f"Strategy Entry Signal for {symbol} on {timeframe_str}: {entry_signal}")
 
                     if entry_signal in ["BUY", "SELL"]:
+                        if last_candle is None: continue
+
                         sl_price = last_candle['stop_loss']
 
                         # === CORRECTED ORDER OF OPERATIONS ===
-                        # 1. DATA INTEGRITY CHECK (MOVED TO THE TOP)
-                        # First, ensure the strategy provided a valid number for the stop loss.
+                        # 1. DATA INTEGRITY CHECK (MUST BE FIRST)
                         if pd.isna(sl_price) or sl_price <= 0:
                             log.warning(f"Strategy for {symbol} produced an invalid SL ({sl_price}). Skipping signal.")
                             continue
@@ -112,7 +113,8 @@ def run():
                         sl_price = risk_manager.validate_and_adjust_sl(sl_price, tick.ask, tick.bid, entry_signal)
 
                         # 3. RACE CONDITION CHECK
-                        if (entry_signal == "BUY" and sl_price >= entry_price) or (entry_signal == "SELL" and sl_price <= entry_price):
+                        if (entry_signal == "BUY" and sl_price >= entry_price) or \
+                                (entry_signal == "SELL" and sl_price <= entry_price):
                             log.warning(
                                 f"Race condition detected for {symbol}. Entry: {entry_price}, Adj. SL: {sl_price}. Aborting.")
                             continue
