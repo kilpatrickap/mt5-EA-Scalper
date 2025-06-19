@@ -61,7 +61,6 @@ def run():
                     risk_reward_ratio=float(symbol_config['risk_reward_ratio']), pip_size=point
                 );
                 log.info(f"Initialized EMARibbonScalper for {symbol}.")
-            # ... (Legacy strategy logic remains) ...
             elif strategy_type == 'RegimeMomentum':
                 strategies[symbol] = RegimeMomentumStrategy(
                     fast_ema_period=int(symbol_config['fast_ema_period']),
@@ -115,28 +114,43 @@ def run():
                             if not tick: continue
                             entry_price = tick.ask if entry_signal == "BUY" else tick.bid
 
-                            # === FINALIZED AND ROBUST LOGIC ===
+                            # === FINALIZED AND FULLY VALIDATED LOGIC ===
+                            # 1. Validate the SL and get the adjusted price
                             sl_price = risk_manager.validate_and_adjust_sl(sl_price, entry_price, entry_signal)
+
+                            # 2. Calculate the required minimum distance in price terms for validation
+                            min_stop_distance_price = risk_manager.stops_level * risk_manager.point
+
+                            # 3. Recalculate TP based on the adjusted SL
                             stop_distance_price = abs(entry_price - sl_price)
-
-                            # CRITICAL FIX: Directly calculate points. This avoids floating point truncation issues.
-                            stop_loss_in_points = stop_distance_price / risk_manager.point
-
                             tp_price = entry_price + (
                                         stop_distance_price * risk_manager.risk_reward_ratio) if entry_signal == "BUY" else entry_price - (
                                         stop_distance_price * risk_manager.risk_reward_ratio)
+
+                            # 4. NEW: Validate the TP to ensure it's also far enough away
+                            if abs(tp_price - entry_price) < min_stop_distance_price:
+                                log.warning(
+                                    f"Take Profit for {symbol} is too close to entry ({tp_price}) after R:R calculation. Aborting trade to maintain valid R:R.")
+                                continue  # Skip trade
+
+                            # 5. Calculate the final stop distance in points for the volume calculator
+                            stop_loss_in_points = stop_distance_price / risk_manager.point
+
+                            # 6. Final sanity check
+                            if stop_loss_in_points <= 0:
+                                log.warning(f"Final stop distance for {symbol} is zero or negative. Aborting trade.")
+                                continue
+                            # ========================================================
 
                             account_info = mt5.account_info()
                             if not account_info:
                                 log.error("Could not retrieve account info. Skipping trade.");
                                 continue
 
-                            # Pass the float value directly to the volume calculator
                             volume = risk_manager.calculate_volume(account_info.balance, risk_percent,
                                                                    stop_loss_in_points)
-
                             if volume:
-                                symbol_info = mt5.symbol_info(symbol)  # Get fresh info for digits
+                                symbol_info = mt5.symbol_info(symbol)
                                 sl_price = round(sl_price, symbol_info.digits)
                                 tp_price = round(tp_price, symbol_info.digits)
                                 connector.place_order(symbol, entry_signal, volume, sl_price, tp_price, magic_number)
